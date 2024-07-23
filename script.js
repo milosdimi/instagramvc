@@ -5,6 +5,7 @@ let posts = [
     image: "img/1.jpg",
     description: "Text 123, test test",
     location: "London",
+    comments: [],
   },
   {
     profileimg: "img/prof2.png",
@@ -12,6 +13,7 @@ let posts = [
     image: "img/2.jpg",
     description: "Text 123, test test",
     location: "Kufstein",
+    comments: [],
   },
   {
     profileimg: "img/prof3.png",
@@ -19,6 +21,7 @@ let posts = [
     image: "img/3.jpg",
     description: "Text 123, test test",
     location: "Austria",
+    comments: [],
   },
   {
     profileimg: "img/prof4.png",
@@ -26,6 +29,7 @@ let posts = [
     image: "img/4.jpg",
     description: "Text 123, test test",
     location: "Venezuela",
+    comments: [],
   },
   {
     profileimg: "img/prof5.png",
@@ -33,6 +37,7 @@ let posts = [
     image: "img/5.jpg",
     description: "Text 123, test test",
     location: "",
+    comments: [],
   },
   {
     profileimg: "img/prof6.png",
@@ -40,9 +45,11 @@ let posts = [
     image: "img/6.jpg",
     description: "Text 123, test test",
     location: "Mexico",
+    comments: [],
   },
 ];
-function show() {
+
+function render() {
   document.getElementById("postcontainer").innerHTML = "";
 
   for (let i = 0; i < posts.length; i++) {
@@ -69,7 +76,28 @@ function show() {
               </div>
              </div>
              <div class="description">${post["description"]}</div>
+             <div class="comments-section">
+                ${post.comments.map(comment => `<div class="comment">${comment}</div>`).join('')}
+             </div>
+             <div style="display:flex;">
+               <div style="width: 100%;"><textarea id="textarea${i}" placeholder="Dein Kommentar hier..." class="comments"></textarea></div> 
+               <div><button onclick="newComments(${i})" id="button${i}" class="comment-button">Posten</button></div>
+              </div>
          </div>
     `;
   }
 }
+
+function newComments(i) {
+  let comment = document.getElementById(`textarea${i}`);
+  if (comment.value.trim() === '') {
+    alert("Bitte füll den Feld aus!")
+    return;
+  }
+  posts[i].comments.push(comment.value);
+
+  comment.value = '';
+
+  render();
+}
+

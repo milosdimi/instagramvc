@@ -3,7 +3,7 @@ body {
     Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #676767;
+  background-color: #9d9d9d;
   display: flex;
   max-width: 1500px;
 }
@@ -98,6 +98,33 @@ h2 {
   gap: 12px;
   width: 20%;
 }
+
+
+.comments {
+  font-size: 14px; 
+  padding: 8px;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  border: none;
+  text-align: start;
+  border-bottom: solid 1px rgba(211, 211, 211, 0.608);
+}
+textarea {
+  border: none;
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  width: 100%;
+  height: 14px;
+  display: inline-table;
+}
+
+.comment-button {
+  background-color: transparent;
+  color: rgb(128, 255, 35);
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 
 
