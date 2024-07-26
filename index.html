@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="./img/instagram.png" />
     <title>Badgram</title>
   </head>
-  <body onload="render()">
+  <body onload="render(); renderFriends();">
     <nav>
       <div class="insta-logo">
         <img src="./img/badgram_logo1.png" alt="Logo" />
@@ -64,15 +64,14 @@
     </nav>
     <main>
       <header>
-          <h2 style="color: black;">Für dich</h2>
-          <h2>Gefolgt</h2>
+        <h2 style="color: black">Für dich</h2>
+        <h2>Gefolgt</h2>
       </header>
+      <div id="frends"></div>
       <div id="postcontainer"></div>
     </main>
     <div id="myacc" class="myacc">
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   </body>
 </html>
