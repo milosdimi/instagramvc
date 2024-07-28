@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="./img/instagram.png" />
     <title>Badgram</title>
   </head>
-  <body onload="render(); renderFriends();">
+  <body onload="render(); renderFriends(); renderSuggestions();">
     <nav>
       <div class="insta-logo">
         <img src="./img/badgram_logo1.png" alt="Logo" />
@@ -70,8 +70,26 @@
       <div id="frends"></div>
       <div id="postcontainer"></div>
     </main>
-    <div id="myacc" class="myacc">
-      <div></div>
+    <div class="myacc">
+      <div id="suggestions-container">
+        <h3>Vorschläge für dich</h3>
+        <div id="suggestions"></div>
+        <footer>
+          <p>Info . </p>
+          <p>Hilfe . </p>
+          <p>Presse . </p>
+          <p>API . </p>
+          <p>Jobs . </p>
+          <p>Datenrichtlinie . </p>
+          <p>Nutzungsbedingungen . </p>
+          <p>Standorte . </p>
+          <p>Sprache . </p>
+          <p>Meta Verified</p>
+          <div>
+            <p>2024 Badgram FROM dimit</p>
+          </div>
+        </footer>
+      </div>
     </div>
   </body>
 </html>

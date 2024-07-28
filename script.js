@@ -102,7 +102,57 @@ let friends = [
   },
 ];
 
-load()
+let suggestions = [
+  {
+    image: "img/prof3.png",
+    name: "horst",
+    info: "Beliebt",
+  },
+  {
+    image: "img/prof2.png",
+    name: "test1",
+    info: "Vorschläge für dich",
+  },
+  {
+    image: "img/prof5.png",
+    name: "user1",
+    info: "Vorschläge für dich",
+  },
+  {
+    image: "img/prof4.png",
+    name: "vandame",
+    info: "Vorschläge für dich",
+  },
+  {
+    image: "img/prof1.png",
+    name: "luis123",
+    info: "Vorschläge für dich",
+  },
+];
+
+load();
+
+function renderSuggestions() {
+  document.getElementById("suggestions").innerHTML = "";
+
+  for (let i = 0; i < suggestions.length; i++) {
+    const suggestion = suggestions[i];
+
+    document.getElementById("suggestions").innerHTML += /*html*/ `
+      <div class="suggestion">
+        <div class="suggestion-img-container">
+          <img class="suggestion-img" src="${suggestion.image}" alt="${suggestion.name}">
+        </div>
+        <div class="suggestion-info">
+          <div class="suggestion-name">${suggestion.name}</div>
+          <div class="suggestion-extra">${suggestion.info}</div>
+        </div>
+        <button class="follow-button">Folgen</button>
+      </div>
+    `;
+  }
+}
+
 
 function renderFriends() {
   document.getElementById("frends").innerHTML = "";
@@ -122,16 +172,16 @@ function renderFriends() {
 }
 
 function friendClicked(name) {
-  alert(`Friend ${name} ist ausgewelt!`);
+  alert(`Melde dich erst an, um Profil von ${name} anzusehen`);
 }
 
 function save() {
   let postsAsText = JSON.stringify(posts);
-  localStorage.setItem('posts', postsAsText);
+  localStorage.setItem("posts", postsAsText);
 }
 
 function load() {
-  let postsAsText = localStorage.getItem('posts');
+  let postsAsText = localStorage.getItem("posts");
 
   if (postsAsText) {
     posts = JSON.parse(postsAsText);
@@ -156,20 +206,30 @@ function render() {
         <img class="post-img" src="${post.image}" alt="Post Image">
         <div class="lcss">
           <div>
-            <img src="${post.liked ? 'img/redlike.png' : 'img/nolike.png'}" class="like-icon" onclick="toggleLike(this, ${i})">
+            <img src="${
+              post.liked ? "img/redlike.png" : "img/nolike.png"
+            }" class="like-icon" onclick="toggleLike(this, ${i})">
             <img src="img/coment.png">
             <img src="img/send.png">
           </div>
           <div>
-            <img src="${post.saved ? 'img/save-instagram-black.png' : 'img/save-instagram.png'}" class="save-icon" onclick="toggleSave(this, ${i})">
+            <img src="${
+              post.saved
+                ? "img/save-instagram-black.png"
+                : "img/save-instagram.png"
+            }" class="save-icon" onclick="toggleSave(this, ${i})">
           </div>
         </div>
         <div class="like">
           <p id="likes${i}">Gefällt ${post.like} Mal</p>
         </div>
-        <div class="description">${post.description}</div>
         <div class="description">
-          ${post.comments.map(comment => `<div class="comment">${comment}</div>`).join('')}
+          <strong>${post.author}:</strong> ${post.description}
+        </div>
+        <div class="description">
+          ${post.comments
+            .map((comment) => `<div class="comment">${comment}</div>`)
+            .join("")}
         </div>
         <div class="commentplace">
           <div style="width: 100%;">
@@ -186,8 +246,8 @@ function render() {
 }
 
 function toggleLike(element, postIndex) {
-  const likedSrc = "img/redlike.png";  // Path to the red like icon
-  const unlikedSrc = "img/nolike.png"; // Path to the original like icon
+  const likedSrc = "img/redlike.png";
+  const unlikedSrc = "img/nolike.png";
 
   if (posts[postIndex].liked) {
     element.src = unlikedSrc;
@@ -198,25 +258,27 @@ function toggleLike(element, postIndex) {
   }
 
   posts[postIndex].liked = !posts[postIndex].liked;
-  document.getElementById(`likes${postIndex}`).textContent = `Gefällt ${posts[postIndex].like} Mal`;
+  document.getElementById(
+    `likes${postIndex}`
+  ).textContent = `Gefällt ${posts[postIndex].like} Mal`;
 }
 
 function toggleSave(element, postIndex) {
   posts[postIndex].saved = !posts[postIndex].saved;
-  const savedSrc = 'img/save-instagram-black.png'; // Path to the saved icon
-  const unsavedSrc = 'img/save-instagram.png'; // Path to the original save icon
+  const savedSrc = "img/save-instagram-black.png";
+  const unsavedSrc = "img/save-instagram.png";
 
   element.src = posts[postIndex].saved ? savedSrc : unsavedSrc;
 }
 
 function newComments(postIndex) {
   let comment = document.getElementById(`textarea${postIndex}`);
-  if (comment.value.trim() === '') {
+  if (comment.value.trim() === "") {
     alert("Bitte füll den Feld aus!");
     return;
   }
   posts[postIndex].comments.push(comment.value);
-  comment.value = '';
+  comment.value = "";
   render();
   save();
 }
