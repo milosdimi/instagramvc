@@ -15,7 +15,6 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 20%;
 }
 nav a {
   text-decoration: none;
@@ -32,7 +31,7 @@ nav a:hover {
 .insta-logo {
   display: flex;
   align-items: center;
-  justify-content: center; /* zentriert das Logo horizontal im Container */
+  justify-content: center;
 }
 
 .insta-logo img {
@@ -89,6 +88,14 @@ h2 {
   color: rgb(211, 211, 211);
 }
 
+main {
+  width: 56vw;
+  padding-left: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .myacc {
   margin-top: 60px;
   margin-right: 160px;
@@ -134,13 +141,14 @@ textarea {
 
 /* Button Hover-Effekt */
 .comment-button:hover {
-  background-color: #0056b3; /* Dunklere Hintergrundfarbe beim Hover */
+  background-color: #0056b3;
 }
-
 
 #frends {
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  gap: 12px;
+  overflow: hidden;
 }
 
 .friend {
@@ -198,13 +206,6 @@ textarea {
   filter: brightness(0.8);
 }
 
-
-
-
-
-
-
-
 #postcontainer {
   display: flex;
   flex-direction: column;
@@ -216,7 +217,7 @@ textarea {
   position: relative; /* Stelle Positionierung relativ ein */
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 500px;
   border-bottom: 1px solid lightgray;
   padding: 8px;
 }
@@ -238,20 +239,19 @@ textarea {
 .location {
   bottom: 5px; /* Abstand zum unteren Rand */
   left: 55px; /* Abstand zum linken Rand (inklusive Profilbildbreite und -abstand) */
-  
 }
 
 .description {
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 18px;
 }
 .lcss {
   display: flex;
   justify-content: space-between;
 }
 .lcss img {
-  width: 64px;
-  height: 64px;
+  width: 24px;
+  height: 24px;
   margin: 10px 10px 10px 10px;
 }
 
@@ -296,7 +296,7 @@ textarea {
 
 .suggestion-extra {
   font-size: 12px;
-  color:#313131;
+  color: #313131;
 }
 
 .follow-button {
@@ -312,8 +312,6 @@ textarea {
 .follow-button:hover {
   background-color: #007bb5;
 }
-
-
 
 footer {
   display: flex;
@@ -336,14 +334,119 @@ footer p:hover {
   color: black;
   opacity: 0.6;
 }
+.mobilemenu {
+  display: none;
+  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 8px;
+  position: sticky;
+  bottom: 0;
+  background: #555555;
+  z-index: 998;
+  border-top: 1px solid #d3d3d361;
+}
+.mobilemenu img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
 /* Responsive Design */
-@media (max-width: 600px) {
-  .insta-logo {
-    padding-top: 12px;
-    padding-left: 8px;
+@media (max-width: 1300px) {
+}
+
+@media (max-width: 1250px) {
+  nav a {
+    display: none;
   }
 
   .insta-logo img {
-    width: 80%; /* Passe die Breite an kleinere Bildschirme an */
+    display: none;
+  }
+
+  .nav-logo-resp {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .scroll-div {
+    overflow-y: scroll;
+    height: 53%;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+    scrollbar-width: none;
+  }
+
+}
+
+@media (max-width: 1120px) {
+}
+
+@media (max-width: 1110px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    padding-right: 24px;
+  }
+
+  header,
+  #frends {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 750px) {
+  #frends {
+    overflow: visible;
+    overflow-x: scroll;
+  }
+
+  header {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .post {
+    width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobilemenu {
+    display: flex;
+  }
+  
+
+  nav {
+    display: none;
+  }
+
+  main {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  header h2 {
+    margin: 0;
+  }
+
+  header {
+    padding-bottom: 24px;
+    padding-top: 24px;
+    margin: 0 0 20px 0;
+  }
+}
+
+@media (max-width: 450px) {
+}
+
+@media (max-width: 1090px) {
+  .myacc {
+    display: none;
   }
 }
