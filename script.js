@@ -153,7 +153,6 @@ function renderSuggestions() {
   }
 }
 
-
 function renderFriends() {
   document.getElementById("frends").innerHTML = "";
 
@@ -193,56 +192,81 @@ function render() {
 
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
-
-    document.getElementById("postcontainer").innerHTML += /*html*/ `
-      <div class="post">
-        <div class="author-info">
-          <img class="friend-img" src="${post.profileimg}" alt="Profile Image">
-          <div>
-            <div class="author">${post.author}</div>
-            <div class="location">${post.location}</div>
-          </div>
-        </div>
-        <img class="post-img" src="${post.image}" alt="Post Image">
-        <div class="lcss">
-          <div>
-            <img src="${
-              post.liked ? "img/redlike.png" : "img/nolike.png"
-            }" class="like-icon" onclick="toggleLike(this, ${i})">
-            <img src="img/coment.png">
-            <img src="img/send.png">
-          </div>
-          <div>
-            <img src="${
-              post.saved
-                ? "img/save-instagram-black.png"
-                : "img/save-instagram.png"
-            }" class="save-icon" onclick="toggleSave(this, ${i})">
-          </div>
-        </div>
-        <div class="like">
-          <p id="likes${i}">Gefällt ${post.like} Mal</p>
-        </div>
-        <div class="description">
-          <strong>${post.author}:</strong> ${post.description}
-        </div>
-        <div class="description">
-          ${post.comments
-            .map((comment) => `<div class="comment">${comment}</div>`)
-            .join("")}
-        </div>
-        <div class="commentplace">
-          <div style="width: 100%;">
-            <textarea id="textarea${i}" placeholder="Dein Kommentar hier..." class="comments"></textarea>
-          </div>
-          <div>
-            <button onclick="newComments(${i})" id="button${i}" class="comment-button">Posten</button>
-          </div>
-        </div>
-
-      </div>
-    `;
+    document.getElementById("postcontainer").innerHTML += renderPost(post, i);
   }
+}
+
+function renderPost(post, index) {
+  return /*html*/ `
+    <div class="post">
+      ${renderAuthorInfo(post)}
+      <img class="post-img" src="${post.image}" alt="Post Image">
+      ${renderLikeCommentSection(post, index)}
+      <div class="like">
+        <p id="likes${index}">Gefällt ${post.like} Mal</p>
+      </div>
+      ${renderDescription(post)}
+      ${renderComments(post)}
+      ${renderCommentInput(index)}
+    </div>
+  `;
+}
+function renderAuthorInfo(post) {
+  return /*html*/ `
+    <div class="author-info">
+      <img class="friend-img" src="${post.profileimg}" alt="Profile Image">
+      <div>
+        <div class="author">${post.author}</div>
+        <div class="location">${post.location}</div>
+      </div>
+    </div>
+  `;
+}
+function renderLikeCommentSection(post, index) {
+  return /*html*/ `
+    <div class="lcss">
+      <div>
+        <img src="${
+          post.liked ? "img/redlike.png" : "img/nolike.png"
+        }" class="like-icon" onclick="toggleLike(this, ${index})">
+        <img src="img/coment.png">
+        <img src="img/send.png">
+      </div>
+      <div>
+        <img src="${
+          post.saved ? "img/save-instagram-black.png" : "img/save-instagram.png"
+        }" class="save-icon" onclick="toggleSave(this, ${index})">
+      </div>
+    </div>
+  `;
+}
+function renderDescription(post) {
+  return /*html*/ `
+    <div class="description">
+      <strong>${post.author}:</strong> ${post.description}
+    </div>
+  `;
+}
+function renderComments(post) {
+  return /*html*/ `
+    <div class="description">
+      ${post.comments
+        .map((comment) => `<div class="comment">${comment}</div>`)
+        .join("")}
+    </div>
+  `;
+}
+function renderCommentInput(index) {
+  return /*html*/ `
+    <div class="commentplace">
+      <div style="width: 100%;">
+        <textarea id="textarea${index}" placeholder="Dein Kommentar hier..." class="comments"></textarea>
+      </div>
+      <div>
+        <button onclick="newComments(${index})" id="button${index}" class="comment-button">Posten</button>
+      </div>
+    </div>
+  `;
 }
 
 function toggleLike(element, postIndex) {
@@ -277,7 +301,10 @@ function newComments(postIndex) {
     alert("Bitte füll den Feld aus!");
     return;
   }
-  posts[postIndex].comments.push(comment.value);
+  const postAuthor = posts[postIndex].author;
+  posts[postIndex].comments.push(
+    `<strong>${postAuthor}:</strong> ${comment.value}`
+  );
   comment.value = "";
   render();
   save();

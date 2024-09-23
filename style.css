@@ -90,16 +90,13 @@ h2 {
 
 main {
   width: 56vw;
-  padding-left: 160px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .myacc {
-  margin-top: 60px;
-  margin-right: 160px;
-  margin-left: 64px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -149,6 +146,7 @@ textarea {
   width: 100%;
   gap: 12px;
   overflow: hidden;
+  justify-content: center;
 }
 
 .friend {
@@ -445,7 +443,7 @@ footer p:hover {
 @media (max-width: 450px) {
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 1460px) {
   .myacc {
     display: none;
   }
