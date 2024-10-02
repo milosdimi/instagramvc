@@ -25,6 +25,7 @@ nav a {
   color: rgb(0, 0, 0);
   opacity: 0.8;
   width: 130px;
+  padding: 0 8px;
 }
 
 nav a:hover {

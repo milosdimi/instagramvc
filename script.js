@@ -285,6 +285,8 @@ function toggleLike(element, postIndex) {
   document.getElementById(
     `likes${postIndex}`
   ).textContent = `Gefällt ${posts[postIndex].like} Mal`;
+
+  save(); 
 }
 
 function toggleSave(element, postIndex) {
@@ -293,6 +295,8 @@ function toggleSave(element, postIndex) {
   const unsavedSrc = "img/save-instagram.png";
 
   element.src = posts[postIndex].saved ? savedSrc : unsavedSrc;
+
+  save(); 
 }
 
 function newComments(postIndex) {
