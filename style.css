@@ -71,12 +71,11 @@ nav a:hover {
   display: flex;
   align-items: center;
   padding-bottom: 40px;
+  justify-content: center;
 }
 .more img {
   display: flex;
   width: 26px;
-  padding-left: 16px;
-  padding-right: 16px;
   cursor: pointer;
 }
 header {
